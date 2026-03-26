@@ -10,15 +10,25 @@ cytoscape.use(dagre);
 const API = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 const NODE_CONFIG = {
-  Customer:     { color: '#6C63FF', icon: '👤', bg: '#EDE9FF' },
-  SalesOrder:   { color: '#F59E0B', icon: '📋', bg: '#FEF3C7' },
-  OrderItem:    { color: '#10B981', icon: '📦', bg: '#D1FAE5' },
-  Product:      { color: '#3B82F6', icon: '🔧', bg: '#DBEAFE' },
-  Delivery:     { color: '#8B5CF6', icon: '🚚', bg: '#EDE9FE' },
-  Plant:        { color: '#EC4899', icon: '🏭', bg: '#FCE7F3' },
-  Invoice:      { color: '#EF4444', icon: '🧾', bg: '#FEE2E2' },
-  Payment:      { color: '#14B8A6', icon: '💳', bg: '#CCFBF1' },
-  JournalEntry: { color: '#6B7280', icon: '📒', bg: '#F3F4F6' },
+  // Core flow
+  Customer:                    { color: '#6C63FF', icon: '👤', bg: '#EDE9FF' },
+  SalesOrder:                  { color: '#F59E0B', icon: '📋', bg: '#FEF3C7' },
+  OrderItem:                   { color: '#10B981', icon: '📦', bg: '#D1FAE5' },
+  SalesOrderScheduleLine:      { color: '#84CC16', icon: '📅', bg: '#ECFCCB' },
+  Delivery:                    { color: '#8B5CF6', icon: '🚚', bg: '#EDE9FE' },
+  DeliveryItem:                { color: '#A78BFA', icon: '📫', bg: '#F5F3FF' },
+  Invoice:                     { color: '#EF4444', icon: '🧾', bg: '#FEE2E2' },
+  BillingItem:                 { color: '#F87171', icon: '🔖', bg: '#FEF2F2' },
+  BillingCancellation:         { color: '#DC2626', icon: '❌', bg: '#FEE2E2' },
+  Payment:                     { color: '#14B8A6', icon: '💳', bg: '#CCFBF1' },
+  JournalEntry:                { color: '#6B7280', icon: '📒', bg: '#F3F4F6' },
+  // Supporting
+  Product:                     { color: '#3B82F6', icon: '🔧', bg: '#DBEAFE' },
+  ProductDescription:          { color: '#60A5FA', icon: '📝', bg: '#EFF6FF' },
+  ProductPlant:                { color: '#2563EB', icon: '🏗️', bg: '#DBEAFE' },
+  Plant:                       { color: '#EC4899', icon: '🏭', bg: '#FCE7F3' },
+  CustomerCompanyAssignment:   { color: '#F472B6', icon: '🏢', bg: '#FDF2F8' },
+  CustomerSalesAreaAssignment: { color: '#E879F9', icon: '🗺️', bg: '#FDF4FF' },
 };
 
 const EXAMPLE_QUERIES = [
@@ -245,17 +255,26 @@ export default function App() {
 
           {activeTab === 'legend' && (
             <div className="legend">
-              {Object.entries(NODE_CONFIG).map(([type, cfg]) => (
+              <div className="legend-group-label">Core Flow</div>
+              {['Customer','SalesOrder','OrderItem','SalesOrderScheduleLine','Delivery','DeliveryItem','Invoice','BillingItem','BillingCancellation','Payment','JournalEntry'].map(type => (
                 <div key={type} className="legend-item">
-                  <div className="legend-dot" style={{ background: cfg.color }}></div>
-                  <span>{cfg.icon}</span>
+                  <div className="legend-dot" style={{ background: NODE_CONFIG[type].color }}></div>
+                  <span>{NODE_CONFIG[type].icon}</span>
+                  <span className="legend-label">{type}</span>
+                </div>
+              ))}
+              <div className="legend-group-label" style={{ marginTop: 12 }}>Supporting</div>
+              {['Product','ProductDescription','ProductPlant','Plant','CustomerCompanyAssignment','CustomerSalesAreaAssignment'].map(type => (
+                <div key={type} className="legend-item">
+                  <div className="legend-dot" style={{ background: NODE_CONFIG[type].color }}></div>
+                  <span>{NODE_CONFIG[type].icon}</span>
                   <span className="legend-label">{type}</span>
                 </div>
               ))}
               <div className="legend-flow">
                 <h4>Business Flow</h4>
                 <div className="flow-chain">
-                  {['Customer', 'SalesOrder', 'Delivery', 'Invoice', 'Payment', 'JournalEntry'].map((t, i, arr) => (
+                  {['Customer','SalesOrder','OrderItem','Delivery','DeliveryItem','Invoice','BillingItem','Payment','JournalEntry'].map((t, i, arr) => (
                     <React.Fragment key={t}>
                       <span className="flow-badge" style={{ background: NODE_CONFIG[t].color }}>
                         {NODE_CONFIG[t].icon} {t}

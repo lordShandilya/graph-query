@@ -641,3 +641,15 @@ h1 {
 
 .upload-status.ok { color: var(--accent2); }
 .upload-status.err { color: var(--error); }
+
+/* ── Legend group labels ── */
+.legend-group-label {
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  padding: 4px 2px 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}

@@ -3,9 +3,12 @@ llm.py - Gemini integration: NL → SQL → answer, with guardrails.
 """
 import httpx, json, re, os
 from db import get_schema_description, run_query
+from google import genai
+from google.genai import types
+from dotenv import load_dotenv
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+load_dotenv()
+
 
 DOMAIN_KEYWORDS = [
     "order", "delivery", "invoice", "payment", "customer", "product", "material",
@@ -39,21 +42,24 @@ def is_domain_query(q: str) -> bool:
 
 
 async def call_gemini(prompt: str) -> str:
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
     if not GEMINI_API_KEY:
         return "Error: GEMINI_API_KEY not set in .env"
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 1024}
-    }
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        resp = await client.post(
-            f"{GEMINI_URL}?key={GEMINI_API_KEY}",
-            json=payload,
-            headers={"Content-Type": "application/json"}
+    model_id = "gemini-3-flash-preview"
+    client = genai.Client(api_key=GEMINI_API_KEY)
+
+    try :
+        response = client.models.generate_content(
+            model= model_id,
+            contents=prompt
         )
-        if resp.status_code != 200:
-            raise Exception(f"Gemini error {resp.status_code}: {resp.text[:200]}")
-        return resp.json()["candidates"][0]["content"]["parts"][0]["text"]
+
+        if not response.text:
+            return "Error: Empty response from Gemini API"
+        
+        return response.text
+    except Exception as e:
+        return f"Error: Gemini SDK Error: {str(e)}"
 
 
 def clean_sql(raw: str) -> str:
