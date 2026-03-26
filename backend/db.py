@@ -27,8 +27,8 @@ import sqlite3
 import pandas as pd
 import os
 
-DB_PATH  = os.path.join(os.path.dirname(__file__), "../data/graph.db")
-DATA_DIR = os.path.join(os.path.dirname(__file__), "../data")
+DB_PATH  = os.path.join(os.path.dirname(__file__), "./data/graph.db")
+DATA_DIR = os.path.join(os.path.dirname(__file__), "./data")
 
 
 def get_conn():
