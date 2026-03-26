@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: graphquery-backend
+    env: python
+    buildCommand: "pip install -r backend/requirements.txt && python3 scripts/generate_sample_data.py && python3 -c 'import sys; sys.path.insert(0, \"backend\"); from db import init_db; init_db()'"
+    startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0

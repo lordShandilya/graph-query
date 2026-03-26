@@ -1,0 +1,11 @@
+customer_id,name,city,country,region
+C0001,Acme Corp,Mumbai,India,APAC
+C0002,TechVision GmbH,Berlin,Germany,EMEA
+C0003,BlueWave LLC,New York,USA,AMER
+C0004,SunRise Traders,Dubai,UAE,EMEA
+C0005,Pacific Imports,Tokyo,Japan,APAC
+C0006,Nordic Supply AB,Stockholm,Sweden,EMEA
+C0007,Desert Logistics,Riyadh,Saudi Arabia,EMEA
+C0008,Maple Trading Co,Toronto,Canada,AMER
+C0009,Southern Cross Ltd,Sydney,Australia,APAC
+C0010,Andean Partners,Bogotá,Colombia,AMER

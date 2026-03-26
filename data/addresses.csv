@@ -1,0 +1,11 @@
+address_id,street,city,state,zip,country
+A0001,123 Industrial Ave,Mumbai,MH,400001,India
+A0002,45 Hauptstrasse,Berlin,BE,10115,Germany
+A0003,789 Commerce Blvd,New York,NY,10001,USA
+A0004,22 Sheikh Zayed Rd,Dubai,DU,00000,UAE
+A0005,1-1 Shinjuku,Tokyo,TK,160-0001,Japan
+A0006,Kungsgatan 5,Stockholm,ST,11122,Sweden
+A0007,King Fahd Rd,Riyadh,RI,11564,Saudi Arabia
+A0008,100 King St W,Toronto,ON,M5X1A9,Canada
+A0009,1 Martin Pl,Sydney,NSW,2000,Australia
+A0010,Calle 72 #10-07,Bogotá,DC,110221,Colombia

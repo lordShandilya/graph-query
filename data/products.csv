@@ -1,0 +1,13 @@
+material_id,description,category,unit,price
+M0001,Industrial Pump A100,Machinery,EA,1200.0
+M0002,Control Panel CP200,Electronics,EA,850.0
+M0003,Steel Pipe 2in x 6ft,Raw Material,PC,45.0
+M0004,Hydraulic Valve HV50,Components,EA,320.0
+M0005,Electric Motor 5HP,Machinery,EA,780.0
+M0006,Bearing Kit BK100,Components,SET,95.0
+M0007,PVC Tubing 1in x 10ft,Raw Material,PC,18.0
+M0008,Pressure Gauge PG20,Instruments,EA,65.0
+M0009,Gasket Set GS300,Components,SET,42.0
+M0010,Filter Assembly FA10,Components,EA,135.0
+M0011,Compressor Unit CU15,Machinery,EA,2100.0
+M0012,Digital Sensor DS5,Electronics,EA,290.0
